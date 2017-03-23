@@ -1,7 +1,7 @@
 #
 # Load source tool
 #
-source "$(dirname $0)/../../source_relative.zsh" $0 -w
+source "$(dirname $0)/../../../src/source_relative.zsh" $0 -w
 
 #
 # Source libraries
