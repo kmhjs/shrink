@@ -1,7 +1,7 @@
 #
 # Initialize base storage
 #
-function @setup_storage()
+function @return::typed::setup_storage()
 {
   typeset -x pass_arg_result
   typeset -x pass_arg_type_info
@@ -14,7 +14,7 @@ function @setup_storage()
 # @param target_type {string, integer, double, array, association}
 # @param result Result value to be stored. Must be `eval`-able form.
 #
-function @store()
+function @return::typed::store()
 {
   local -A type_translation=(
     string      ''
@@ -48,7 +48,7 @@ function @store()
 #
 # @param variable_name
 #
-function @load()
+function @return::typed::load()
 {
   local variable_name=$1
 
