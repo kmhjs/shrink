@@ -35,3 +35,47 @@ function @option::value_pop()
 
   return 0
 }
+
+#
+# Verifies there are no duplicated options
+# (Duplicated options means short/long option etc. Not same options)
+#
+# @param 1st option string
+# @param 2nd option string
+# @param Args for script
+#
+function @option::has_duplicated_options()
+{
+  local -a options=($1 $2)
+  local -a args=($*)
+
+  # Verify args for this function
+  if [[ ${#options} != 2 ]]
+  then
+    echo "Error: Invalid option was found for $0" 1>&2
+    return 1
+  fi
+
+  # Remove heading option string
+  args[1,2]=()
+
+  # Verify the number of args
+  if [[ ${#args} == 0 ]]
+  then
+    echo "Error: No args for verify in $0" 1>&2
+    return 1
+  fi
+
+  # Verify the target
+  if [[ ${args[(i)${options[1]}]} == $((${#args} + 1)) ]]
+  then
+    return 1
+  fi
+
+  if [[ ${args[(i)${options[2]}]} != $((${#args} + 1)) ]]
+  then
+    return 0
+  fi
+
+  return 1
+}
