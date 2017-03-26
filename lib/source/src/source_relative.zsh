@@ -14,13 +14,13 @@
 # #
 # # Source libraries
 # #
-# @source_relative 'lib/lib1.sh'
-# @source_relative 'lib/lib2.sh'
+# @source::relative 'lib/lib1.sh'
+# @source::relative 'lib/lib2.sh'
 #
 # #
 # # Disable @source_relative in caller scope
 # #
-# unfunction @source_relative
+# unfunction @source::relative
 #
 # -- end ---
 #
@@ -40,7 +40,7 @@ typeset -i enable_warning=$?
 # Source alias task
 # Usage: @source_relative [-q] source_target_path (from parent script)
 #
-function @source_relative()
+function @source::relative()
 {
   # Parse quiet option
   local -i enable_quiet=1
